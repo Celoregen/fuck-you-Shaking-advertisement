@@ -1,0 +1,165 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: #000;
+}
+
+body {
+  overflow: hidden;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font: inherit;
+}
+
+.ad-container {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #000;
+}
+
+/* ==================== 无权限：只能摇一摇跳过 ==================== */
+
+.shake-ad,
+.normal-ad {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.shake-ad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding:
+    max(24px, env(safe-area-inset-top))
+    max(24px, env(safe-area-inset-right))
+    max(24px, env(safe-area-inset-bottom))
+    max(24px, env(safe-area-inset-left));
+  text-align: center;
+  background: #000;
+}
+
+.placeholder-ad-text {
+  position: absolute;
+  top: max(24px, env(safe-area-inset-top));
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 13px;
+}
+
+.permission-button {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  animation: pulse 2s infinite;
+}
+
+.permission-button svg {
+  width: 46px;
+  height: 46px;
+  display: block;
+}
+
+.permission-button:active {
+  transform: scale(0.95);
+}
+
+.permission-button:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 4px;
+}
+
+.shake-title {
+  margin-top: 22px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.permission-hint {
+  margin-top: 10px;
+  min-height: 20px;
+  max-width: 320px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.permission-hint.error {
+  color: #ff6b6b;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.06);
+    opacity: 0.88;
+  }
+}
+
+/* ==================== 有权限：正常广告 ==================== */
+
+.normal-ad {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #111;
+  text-align: center;
+}
+
+.normal-ad.active {
+  display: flex;
+}
+
+.normal-ad-text {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.normal-ad-hint {
+  margin-top: 12px;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 14px;
+}
+
+/* 无障碍 / 减少动画 */
+@media (prefers-reduced-motion: reduce) {
+  .permission-button {
+    animation: none;
+  }
+}

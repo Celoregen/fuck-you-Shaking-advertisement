@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  >
+  <meta name="theme-color" content="#000000">
+  <title>摇一摇广告 Demo</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <main class="ad-container" id="adContainer">
+
+    <!--
+      无权限状态：
+      整个页面就是一个“只能摇一摇跳过”的广告占位。
+      中间按钮仅用于申请设备运动相关权限。
+      不提供倒计时、关闭按钮、文字跳过按钮等其他方式。
+    -->
+    <section class="shake-ad" id="shakeAd" aria-label="摇一摇跳过广告">
+      <div class="placeholder-ad-text">占位广告</div>
+
+      <button
+        class="permission-button"
+        id="permissionButton"
+        type="button"
+        aria-label="申请设备运动权限"
+      >
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <path
+            d="M22 9v26h7v20l18-30H36L46 9z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+
+      <div class="shake-title">摇一摇跳过广告</div>
+      <div class="permission-hint" id="permissionHint">
+        点击中间按钮申请权限
+      </div>
+    </section>
+
+    <!--
+      有权限状态：
+      展示正常广告占位文本。
+      跳过仍然只能依靠摇一摇，不提供其他跳过手段。
+    -->
+    <section class="normal-ad" id="normalAd" aria-label="正常广告">
+      <div class="normal-ad-text">正常广告</div>
+      <div class="normal-ad-hint">摇一摇跳过广告</div>
+    </section>
+
+  </main>
+
+  <script src="./shake-ad.js" defer></script>
+</body>
+</html>
